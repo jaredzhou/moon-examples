@@ -1,0 +1,14 @@
+# MoonBit build artifacts
+target/
+_build/
+.moon/
+.mooncakes/
+
+# Cached / fetched package sources (from `moon fetch`)
+.repos/
+
+# Native / JS backend outputs
+node_modules/
+*.exe
+*.o
+*.obj

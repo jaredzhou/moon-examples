@@ -1,0 +1,9 @@
+import {
+  "jaredzhou/pony",
+  "jaredzhou/todo/store",
+  "jaredzhou/todo/handler",
+  "moonbitlang/core/json",
+  "moonbitlang/async",
+}
+
+pkgtype(kind: "executable")
