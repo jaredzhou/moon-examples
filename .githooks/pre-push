@@ -1,0 +1,24 @@
+#!/bin/sh
+# Pre-push hook for moon-examples.
+# Mirrors the four steps in .github/workflows/ci.yml so a broken push is
+# caught locally. Skip with `git push --no-verify` if you really must.
+
+set -e
+
+echo "→ moon check --deny-warn"
+moon check --deny-warn
+
+echo "→ moon fmt --check"
+moon fmt --check
+
+echo "→ moon info (checking for .mbti drift)"
+moon info
+if ! git diff --exit-code; then
+  echo "error: moon info produced a .mbti diff — run 'moon info' locally and commit the result" >&2
+  exit 1
+fi
+
+echo "→ moon test"
+moon test
+
+echo "✓ all pre-push checks passed"
